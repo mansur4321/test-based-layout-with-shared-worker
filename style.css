@@ -1,0 +1,436 @@
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+	margin: 0;
+}
+
+button {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+ul[class],
+ol[class] {
+	list-style: none;
+	padding: 0;
+}
+
+body {
+	min-height: 100vh;
+	text-rendering: optimizeSpeed;
+	line-height: 1.5;
+}
+
+img,
+picture {
+	max-width: 100%;
+	display: block;
+}
+
+:root {
+	/* LIGHT THEME */
+	--bg: #ffffff; /* фон страницы */
+	--surface: #f8fafc; /* фон карточек/блоков */
+	--text-main: #ffffff; /* основной текст на белом/светлом */
+	--text-secondary: #0f172a; /* вторичный текст на белом/светлом */
+	--text-muted: #334155; /* вторичный текст */
+	--blue: #2563eb; /* синий акцент */
+	--blue-dark: #1e3a8a; /* темно-синий акцент */
+	--btn-bg: #2563eb; /* кнопка */
+	--btn-bg-hover: #1d4ed8; /* hover кнопки */
+	--btn-text: #ffffff; /* текст кнопки */
+	--border: #dbeafe; /* границы */
+}
+[data-theme="dark"] {
+	/* DARK THEME */
+	--bg: #0b1220; /* темный фон страницы */
+	--surface: #111827; /* фон карточек/блоков */
+	--text-main: #ffffff; /* основной текст на темном */
+	--text-secondary: #d0cece; /* вторичный текст на темном */
+	--text-muted: #9ca3af; /* вторичный текст */
+	--blue: #60a5fa; /* синий для темной темы */
+	--blue-dark: #1e40af; /* темно-синий для темной темы */
+	--btn-bg: #3b82f6; /* кнопка */
+	--btn-bg-hover: #2563eb; /* hover кнопки */
+	--btn-text: #f8fafc; /* текст кнопки */
+	--border: #1f2937; /* границы */
+}
+
+.container {
+	width: 100%;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	background-color: var(--bg);
+}
+
+.header {
+	flex: 0;
+	width: 100%;
+	height: 90px;
+	background-color: var(--blue);
+	color: var(--text-secondary);
+	box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.4);
+	top: 0;
+	left: 0;
+	z-index: 100;
+}
+.header__content-wrapper {
+	max-width: 2048px;
+	margin: 0 auto;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 16px;
+	padding: 16px 56px;
+}
+.header__section {
+	flex: 1;
+	display: flex;
+	justify-content: center;
+}
+.header__section:first-child {
+	justify-content: flex-start;
+}
+.header__section:last-child {
+	justify-content: flex-end;
+}
+.header__title {
+	font-size: 36px;
+	font-weight: bold;
+	color: var(--text-main);
+}
+
+.tab-counter {
+	background-color: var(--surface);
+	border-radius: 50%;
+	width: 40px;
+	height: 40px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.tab-counter__count {
+	color: var(--text-secondary);
+	font-weight: bold;
+	font-size: 20px;
+}
+
+.theme-toggle-button {
+	background-color: var(--surface);
+	border-radius: 12px;
+	width: 40px;
+	height: 20px;
+	padding: 0 2px;
+	cursor: pointer;
+	position: relative;
+}
+.theme-toggle-button__thumb {
+	background-color: var(--text-secondary);
+	border-radius: 50%;
+	width: 18px;
+	height: 18px;
+	position: absolute;
+	top: 50%;
+	left: 2px;
+	transform: translateY(-50%);
+	transition: 0.1s linear;
+}
+.theme-toggle-button__thumb.dark {
+	left: 100%;
+	transform: translateX(calc(-100% - 2px)) translateY(-50%);
+}
+
+.main {
+	flex: 1;
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+.cards {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-template-rows: 1fr;
+	grid-column-gap: 16px;
+	grid-row-gap: 16px;
+	margin: 64px 0;
+}
+
+.card {
+	grid-column: span 1 / span 1;
+	grid-row: span 1 / span 1;
+	background-color: var(--surface);
+	border-radius: 12px;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	justify-content: stretch;
+	gap: 16px;
+	box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+	max-width: 250px;
+}
+
+.card__top {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	background-color: var(--blue);
+	padding: 24px 16px;
+}
+.card__title {
+	font-size: 24px;
+	font-weight: bold;
+	color: var(--text-main);
+}
+.card__content {
+	flex: 1;
+	padding: 0 16px;
+	text-align: left;
+}
+.card__description {
+	font-size: 16px;
+	color: var(--text-secondary);
+	line-height: 1.5;
+}
+.card__bottom {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	padding: 32px 16px 16px;
+}
+
+.button-like {
+	background-color: var(--btn-bg);
+	color: var(--btn-text);
+	border-radius: 8px;
+	padding: 6px 16px;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: all 0.3s ease;
+}
+.button-like:hover {
+	background-color: var(--btn-bg-hover);
+}
+.button-like:active {
+	transform: scale(0.9);
+}
+
+.form {
+	margin-bottom: 64px;
+}
+
+.email-subscribe-form {
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	justify-content: flex-start;
+	gap: 16px;
+}
+.email-subscribe-form__input {
+	width: 100%;
+	padding: 8px 16px;
+	border-radius: 8px;
+	border: 1px solid var(--border);
+	font-size: 16px;
+	font-weight: 500;
+	color: var(--text-secondary);
+	background-color: var(--surface);
+	transition: all 0.3s ease;
+}
+
+.email-subscribe-form__sub-elements-wrapper {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	gap: 8px;
+}
+.email-subscribe-form__error-message {
+	margin-left: 4px;
+	color: red;
+	font-size: 14px;
+	transition: all 0.3s ease;
+	opacity: 0;
+	margin-top: -8px;
+}
+.email-subscribe-form__error-message.visible {
+	opacity: 1;
+}
+.email-subscribe-form__button {
+	color: var(--btn-text);
+	background-color: var(--btn-bg);
+	border-radius: 8px;
+	padding: 8px 16px;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: all 0.3s ease;
+}
+.email-subscribe-form__button:hover {
+	background-color: var(--btn-bg-hover);
+}
+.email-subscribe-form__button:active {
+	transform: scale(0.95);
+}
+
+.email-list-wrapper {
+	margin-top: 48px;
+}
+
+.email-list {
+	margin-bottom: 16px;
+}
+.email-list__item {
+	position: relative;
+	padding-left: 24px;
+}
+.email-list__email {
+	color: var(--text-secondary);
+	font-size: 16px;
+	font-weight: 600;
+	line-height: 1.5;
+}
+.email-list__email:before {
+	content: "✉";
+	position: absolute;
+	left: 0;
+	top: 1px;
+	color: var(--blue);
+}
+
+.open-full-button {
+	background: none;
+	border: none;
+	cursor: pointer;
+	color: var(--text-secondary);
+	transition: all 0.3s ease;
+	color: var(--text-secondary);
+	font-size: 16px;
+	border-radius: 4px;
+	padding: 0 4px;
+	opacity: 0;
+}
+.open-full-button:hover {
+	background-color: var(--btn-bg);
+	color: var(--btn-text);
+}
+.open-full-button:active {
+	transform: scale(1.1);
+}
+.open-full-button.visible {
+	opacity: 1;
+}
+
+.footer {
+	flex: 0;
+	width: 100%;
+	min-height: 48px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 24px;
+	font-weight: 500;
+	color: var(--text-main);
+	background-color: var(--blue-dark);
+	padding: 0 24px;
+}
+
+@media (max-width: 1110px) {
+	.header__title {
+		font-size: 24px;
+	}
+	.main {
+		padding: 0 32px;
+	}
+	.cards {
+		grid-template-columns: repeat(2, 1fr);
+		grid-template-rows: repeat(2, 1fr);
+		margin: 40px 0;
+	}
+	.card {
+		max-width: 100%;
+	}
+	.form {
+		margin-bottom: 40px;
+	}
+	.email-list-wrapper {
+		margin-top: 24px;
+	}
+}
+
+@media (max-width: 768px) {
+	.email-subscribe-form {
+		gap: 8px;
+	}
+	.email-subscribe-form__error-message {
+		font-size: 12px;
+		margin-top: 0px;
+	}
+	.header__content-wrapper {
+		padding: 16px 20px;
+	}
+	.header__section {
+		flex: 0;
+		justify-content: flex-end;
+	}
+	.header__section:first-child {
+		flex: 1;
+		justify-content: flex-start;
+	}
+	.header__title {
+		font-size: 20px;
+	}
+	.tab-counter {
+		width: 32px;
+		height: 32px;
+	}
+	.tab-counter__count {
+		font-size: 16px;
+	}
+	.email-subscribe-form__sub-elements-wrapper {
+		flex-direction: row;
+	}
+	.main {
+		padding: 0 16px;
+	}
+	.cards {
+		grid-template-columns: 1fr;
+		grid-template-rows: repeat(4, 1fr);
+		margin: 48px 0;
+	}
+	.card {
+		max-width: 100%;
+	}
+	.form {
+		margin-bottom: 32px;
+	}
+	.email-list-wrapper {
+		margin-top: 0px;
+	}
+	.footer {
+		font-size: 18px;
+		padding: 0 16px;
+	}
+}
